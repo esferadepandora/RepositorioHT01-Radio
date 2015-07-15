@@ -34,14 +34,17 @@ public class Principal {
 	int pos;
         int b=0;
         Radio radio1= new RadioCarro();
+        Scanner leer = new Scanner(System.in); //Es un escaner de texto.
         
-        //Iniciar el radio como apagado y en AM (AM=1, FM=0).
+        //Iniciar el radio como apagado y en FM (FM=1, AM=0).
         radio1.setEstado(false);
         radio1.setAMFM(1);
         
+        //Esta instruccion solo se muestra al iniciar el programa.
 	System.out.println("Para realizar alguna accion con el radio ingrese el numero de la opcion deseada.");
-	Scanner leer = new Scanner(System.in);
 	
+	
+        //Mientras el programa este encendido.
 	while (a == 0){
             nEstado = radio1.getEstado();
             banda = radio1.getAMFM();
@@ -49,11 +52,12 @@ public class Principal {
             else if (nEstado==true && banda==0 && b==1){System.out.println("\nRADIO ENCENDIDO\nFrecuencia: AM");}
             else if (nEstado==false){System.out.println("\nRADIO APAGADO\n");}
 
+            //Menu de opciones.
             System.out.println("1. On\n2. Cambiar AM o FM \n3. Cambiar emisora con dial\n4. Guardar emisora\n5. Cambiar emisora con boton\n6. Off\n7. Salir del programa\n\nNumero: ");
             String opcion = leer.nextLine();
 		
             if (opcion.equals("1")){
-		nEstado = true;
+		nEstado = true; //Encender radio.
 		radio1.setEstado(nEstado);
                 b=1;
             }
