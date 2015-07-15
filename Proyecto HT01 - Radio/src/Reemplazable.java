@@ -94,16 +94,29 @@ public class Reemplazable implements Radio {
         }
     }
     //Pone la emisora que esta guardada en ese boton.
-    public double getEmisora(int numBoton){
+    public double getEmisora(){
         if(this.banda==1){//FM
             return botonesFM[numBoton];
         }
         else if(this.banda==0){//AM
             return (int) botonesAM[numBoton];
         }
+        return 0;
     }
     
     //Este metodo no sirve absolutamente para NADA, pero como teniamos que usar esta interfaz...
-    public void memoria(int pos){ 
+    public void memoria(int numBoton){ 
+        if  (this.banda==1){  
+            if(numBoton<13 && numBoton>0){ 
+              this.emisora = botonesFM[numBoton];
+            }
+        }
+        else if (this.banda==0){
+            if(numBoton<13 && numBoton>0){
+              this.emisora = botonesAM[numBoton];
+            }
+        }
+            
+        
     }
 }

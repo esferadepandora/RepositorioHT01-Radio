@@ -97,7 +97,7 @@ public class Principal {
             else if (opcion.equals("6") && estado==true){ //Regresa emisora en boton.
                 System.out.println("\n\nNumero de boton:");
                 numBoton=leer.nextInt();
-		radio1.getEmisora(numBoton);
+		radio1.getEmisora();
             }
             else if (opcion.equals("7")){
                 radio1.setEstado(false); //La apaga este encendida o apagada.   
