@@ -36,6 +36,7 @@ public class Principal {
 	int numBoton;
         Radio radio1= new Reemplazable(); //Solo esta linea hay que modificar.
         Scanner leer = new Scanner(System.in); //Es un escaner de texto.
+        String opcion;
         
         //Iniciar el radio como apagado y en FM (FM=1, AM=0).
         radio1.setEstado(false);
@@ -47,9 +48,11 @@ public class Principal {
 	
 	
         //Mientras el programa este encendido.
-	while (a == 0){
+        while (a == 0){
             estado = radio1.getEstado();
             banda = radio1.getAMFM();
+            emisora = radio1.getEmisora();
+            
             if (estado==true && banda==1){
                 System.out.println("\nRADIO ENCENDIDO\nFrecuencia: FM");
             }
@@ -64,14 +67,14 @@ public class Principal {
             System.out.println("1. On\n2. Cambiar AM o FM \n3. Subir dial\n4. Bajar dial\n5. Guardar emisora en boton (1-12)\n6. Cambiar emisora con boton (1-12)\n7. Off\n8. Salir del programa\n\nNumero: ");
             
             //Que opcion escoge el usuario.
-            String opcion = leer.nextLine();
-            int numBoton = leer.nextLine();
+            opcion = leer.nextLine();
+
 		
             if (opcion.equals("1")){
 		estado = true; //Encender radio.
 		radio1.setEstado(estado);
             }
-            else if (opcion.equals("2")){
+            else if (opcion.equals("2") && estado==true){
 		if (banda==1){
                     banda=0;
                 }
@@ -80,29 +83,32 @@ public class Principal {
                 }
                 radio1.setAMFM(banda);
             }
-            else if (opcion.equals("3")){
+            else if (opcion.equals("3") && estado==true){ //Sube dial.
 		radio1.sintonizar(true);
             }
-            else if (opcion.equals("4")){
+            else if (opcion.equals("4") && estado==true){ //Baja dial.
 		radio1.sintonizar(false);
             }
-            else if (opcion.equals("5")){
+            else if (opcion.equals("5") && estado==true){ //Guarda el boton.
                 System.out.println("\n\nNumero de boton:");
+                numBoton=leer.nextInt();
 		radio1.guardar(numBoton);
             }
-            else if (opcion.equals("6")){
+            else if (opcion.equals("6") && estado==true){ //Regresa emisora en boton.
                 System.out.println("\n\nNumero de boton:");
+                numBoton=leer.nextInt();
 		radio1.getEmisora(numBoton);
             }
             else if (opcion.equals("7")){
+                radio1.setEstado(false); //La apaga este encendida o apagada.   
+            }
+            else if (opcion.equals("8")){
 		System.out.println("Gracias por utilizar nuestro programa de radio, que tenga buen dia.");
-		a = 1;
+		a = 1; //Sale del while, el programa termina.
             }
             else {
-		System.out.println("\nERROR. La opcion ingresada no es valida, recuerde que solamente puede ingresar numeros de 1 a 7 \ny si el radio esta apagado no puede utilizar las opciones 2 a 5. Intente otra vez.\n");
+		System.out.println("\nERROR. La opcion ingresada no es valida, recuerde que solamente puede ingresar numeros entre 1 y 8 \ny si el radio esta apagado no puede utilizar las opciones entre 2 y 6. Intente otra vez.\n");
             }
-	}
-		
+	}	
     }
-
 }

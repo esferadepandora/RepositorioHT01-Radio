@@ -30,9 +30,10 @@ public interface Radio{
     
     //Emisora actual se guarda en el boton que se ingresa como parametro.
     public void guardar(int numBoton);
-    //Pone la emisora que esta guardada en ese boton.
-    public double getEmisora(int numBoton);
     
-    //Este metodo no sirve absolutamente para NADA, pero como teniamos que usar esta interfaz...
-    public void memoria(int pos);
+    //Devuelve la emisora actual. Este metodo realmente no deberia de existir, pero bueno...
+    public double getEmisora();
+    
+    //Devuelve la emisora que esta en el boton del parametro.
+    public void memoria(int numBoton);
 }
