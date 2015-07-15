@@ -16,12 +16,15 @@
 
 //Este paquete lo establece NetBeans al momento de crear un proyecto. Sirve
 //para las puebas unitarias y para el javadoc.
-package hojatrabajo1;
+
 
 //Se importa la clase scanner para recoger los ingresos del usuario.
 import java.util.Scanner;
 
-public class Driver {
+public class Principal {
+    //No hay atributos.
+    
+    //Unico metodo es el main.
     public static void main (String[]args){
         int a = 0;
 	System.out.println("Para realizar alguna accion con el radio ingrese el numero de la opcion deseada.");
