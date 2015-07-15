@@ -26,19 +26,22 @@ public class Principal {
     
     //Unico metodo es el main.
     public static void main (String[]args){
-        int a = 0;
-	System.out.println("Para realizar alguna accion con el radio ingrese el numero de la opcion deseada.");
-	Scanner leer = new Scanner(System.in);
-	Radio radio1= new RadioCarro();
-	radio1.setEstado(false);
-        radio1.setAMFM(1);
-
-	boolean nEstado;
+        //Variables
+        int a = 0; //Para que el programa principal corra o termine.
+        boolean nEstado;
 	int banda;
 	boolean ud;
 	int pos;
         int b=0;
-
+        Radio radio1= new RadioCarro();
+        
+        //Iniciar el radio como apagado y en AM (AM=1, FM=0).
+        radio1.setEstado(false);
+        radio1.setAMFM(1);
+        
+	System.out.println("Para realizar alguna accion con el radio ingrese el numero de la opcion deseada.");
+	Scanner leer = new Scanner(System.in);
+	
 	while (a == 0){
             nEstado = radio1.getEstado();
             banda = radio1.getAMFM();
