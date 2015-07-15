@@ -10,8 +10,8 @@
 //                      HOJA DE TRABAJO 1 - RADIO
 //
 //#########################################################################
-//Esta clase es la interfaz para consola. Su unico metodo es el main. Esta
-//interactua con el usuario que desea utilizar la radio.
+//Esta clase interactua con el usuario en consola. Su unico metodo es el 
+//main, por eso es la clase principal.
 //#########################################################################
 
 //Este paquete lo establece NetBeans al momento de crear un proyecto. Sirve
@@ -26,19 +26,21 @@ public class Principal {
     
     //Unico metodo es el main.
     public static void main (String[]args){
+        
         //Variables
         int a = 0; //Para que el programa principal corra o termine.
-        boolean nEstado;
+        boolean estado;
 	int banda;
-	boolean ud;
-	int pos;
-        int b=0;
-        Radio radio1= new RadioCarro();
+	boolean direccionDial;
+        double emisora=87.9; //Inicia en FM 87.9 al encender.
+	int numBoton;
+        Radio radio1= new Reemplazable(); //Solo esta linea hay que modificar.
         Scanner leer = new Scanner(System.in); //Es un escaner de texto.
         
         //Iniciar el radio como apagado y en FM (FM=1, AM=0).
         radio1.setEstado(false);
         radio1.setAMFM(1);
+        
         
         //Esta instruccion solo se muestra al iniciar el programa.
 	System.out.println("Para realizar alguna accion con el radio ingrese el numero de la opcion deseada.");
@@ -46,37 +48,51 @@ public class Principal {
 	
         //Mientras el programa este encendido.
 	while (a == 0){
-            nEstado = radio1.getEstado();
+            estado = radio1.getEstado();
             banda = radio1.getAMFM();
-            if (nEstado==true && banda==1 && b==1){System.out.println("\nRADIO ENCENDIDO\nFrecuencia: FM");}
-            else if (nEstado==true && banda==0 && b==1){System.out.println("\nRADIO ENCENDIDO\nFrecuencia: AM");}
-            else if (nEstado==false){System.out.println("\nRADIO APAGADO\n");}
+            if (estado==true && banda==1){
+                System.out.println("\nRADIO ENCENDIDO\nFrecuencia: FM");
+            }
+            else if (estado==true && banda==0){
+                System.out.println("\nRADIO ENCENDIDO\nFrecuencia: AM");
+            }
+            else if (estado==false){
+                System.out.println("\nRADIO APAGADO\n");
+            }
 
             //Menu de opciones.
-            System.out.println("1. On\n2. Cambiar AM o FM \n3. Cambiar emisora con dial\n4. Guardar emisora\n5. Cambiar emisora con boton\n6. Off\n7. Salir del programa\n\nNumero: ");
+            System.out.println("1. On\n2. Cambiar AM o FM \n3. Subir dial\n4. Bajar dial\n5. Guardar emisora en boton (1-12)\n6. Cambiar emisora con boton (1-12)\n7. Off\n8. Salir del programa\n\nNumero: ");
+            
+            //Que opcion escoge el usuario.
             String opcion = leer.nextLine();
+            int numBoton = leer.nextLine();
 		
             if (opcion.equals("1")){
-		nEstado = true; //Encender radio.
-		radio1.setEstado(nEstado);
-                b=1;
+		estado = true; //Encender radio.
+		radio1.setEstado(estado);
             }
-            else if (opcion.equals("2") && b==1){
-		if (banda==1){banda=0; radio1.setAMFM(banda);}
-                else if (banda==0){banda=1; radio1.setAMFM(banda);}
+            else if (opcion.equals("2")){
+		if (banda==1){
+                    banda=0;
+                }
+                else if (banda==0){
+                    banda=1;
+                }
+                radio1.setAMFM(banda);
             }
-            else if (opcion.equals("3") && b==1){
-		System.out.println("e");
+            else if (opcion.equals("3")){
+		radio1.sintonizar(true);
             }
-            else if (opcion.equals("4") && b==1){
-		System.out.println("e");
+            else if (opcion.equals("4")){
+		radio1.sintonizar(false);
             }
-            else if (opcion.equals("5") && b==1){
-		System.out.println("e");
+            else if (opcion.equals("5")){
+                System.out.println("\n\nNumero de boton:");
+		radio1.guardar(numBoton);
             }
             else if (opcion.equals("6")){
-		nEstado = false;
-		radio1.setEstado(nEstado);
+                System.out.println("\n\nNumero de boton:");
+		radio1.getEmisora(numBoton);
             }
             else if (opcion.equals("7")){
 		System.out.println("Gracias por utilizar nuestro programa de radio, que tenga buen dia.");
