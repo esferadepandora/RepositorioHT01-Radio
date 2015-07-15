@@ -16,7 +16,7 @@
 
 //Este paquete lo establece NetBeans al momento de crear un proyecto. Sirve
 //para las puebas unitarias y para el javadoc.
-package hojatrabajo1;
+
 
 //Se importa la clase scanner para recoger los ingresos del usuario.
 import java.util.Scanner;

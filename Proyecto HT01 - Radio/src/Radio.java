@@ -1,4 +1,4 @@
-package hojatrabajo1;
+
 
 public interface Radio{
 
