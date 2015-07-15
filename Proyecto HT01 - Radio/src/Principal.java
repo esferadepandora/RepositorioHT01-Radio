@@ -20,7 +20,7 @@
 
 //Se importa la clase scanner para recoger los ingresos del usuario.
 import java.util.Scanner;
-
+import java.text.DecimalFormat;
 public class Principal {
     //No hay atributos.
     
@@ -36,11 +36,13 @@ public class Principal {
 	int numBoton;
         Radio radio1= new Reemplazable(); //Solo esta linea hay que modificar.
         Scanner leer = new Scanner(System.in); //Es un escaner de texto.
+        DecimalFormat formateador = new DecimalFormat("###.#");
         String opcion;
         
         //Iniciar el radio como apagado y en FM (FM=1, AM=0).
         radio1.setEstado(false);
         radio1.setAMFM(1);
+        radio1.sintonizar(true);
         
         
         //Esta instruccion solo se muestra al iniciar el programa.
@@ -51,13 +53,14 @@ public class Principal {
         while (a == 0){
             estado = radio1.getEstado();
             banda = radio1.getAMFM();
-            emisora = radio1.getEmisora();
             
             if (estado==true && banda==1){
                 System.out.println("\nRADIO ENCENDIDO\nFrecuencia: FM");
+                System.out.println("Emisora: "+formateador.format(radio1.getEmisora()));
             }
             else if (estado==true && banda==0){
                 System.out.println("\nRADIO ENCENDIDO\nFrecuencia: AM");
+                System.out.println("Emisora: "+radio1.getEmisora());
             }
             else if (estado==false){
                 System.out.println("\nRADIO APAGADO\n");
@@ -92,12 +95,38 @@ public class Principal {
             else if (opcion.equals("5") && estado==true){ //Guarda el boton.
                 System.out.println("\n\nNumero de boton:");
                 numBoton=leer.nextInt();
-		radio1.guardar(numBoton);
+                if(numBoton<13 && numBoton>0){
+                    if(banda==1){//FM
+                        radio1.guardar(numBoton);
+                        System.out.println("\nEmisora "+formateador.format(radio1.getEmisora())+" FM guardada en el boton "+numBoton+".");
+                    }
+                    else if(banda==0){//AM
+                        radio1.guardar(numBoton);
+                        System.out.println("\nEmisora "+radio1.getEmisora()+" AM guardada en el boton "+numBoton+".");
+                    }
+                }
+                else{
+                    System.out.println("\nBoton no existe. Intente otra vez."); //Si ingresa botones menores a 0 o mayores a 12.
+                }
+                leer.nextLine();//permite vaciar el buffer para que pueda leer correctamente los datos
             }
             else if (opcion.equals("6") && estado==true){ //Regresa emisora en boton.
                 System.out.println("\n\nNumero de boton:");
                 numBoton=leer.nextInt();
-		radio1.getEmisora();
+                if(numBoton<13 && numBoton>0){
+                    if(banda==1){//FM
+                        radio1.memoria(numBoton);
+                        System.out.println("\nLa emisora guardada en el boton "+numBoton+" es "+formateador.format(radio1.getEmisora())+" FM.");
+                    }
+                    else if(banda==0){//AM
+                        radio1.memoria(numBoton);
+                        System.out.println("\nLa emisora guardada en el boton "+numBoton+" es "+radio1.getEmisora()+" AM.");
+                    }
+                }
+                else{
+                    System.out.println("\nBoton no existe. Intente otra vez."); //Si ingresa botones menores a 0 o mayores a 12.
+                }
+                leer.nextLine(); //permite vaciar el buffer para que pueda leer correctamente los datos
             }
             else if (opcion.equals("7")){
                 radio1.setEstado(false); //La apaga este encendida o apagada.   
