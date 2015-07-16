@@ -21,7 +21,8 @@ public class Reemplazable implements Radio {
     
     //ARIBUTOS
     private boolean estado;
-    private double emisora;
+    private int emisoraAM=530;
+    private double emisoraFM=87.9;
     private int banda;
     private boolean direccionDial;
     private int numBoton;
@@ -50,29 +51,29 @@ public class Reemplazable implements Radio {
         //Si esta en FM.
         if(this.banda==1){ 
             if(direccionDial==true){
-                this.emisora=this.emisora+0.2;
+                this.emisoraFM=this.emisoraFM+0.2;
             }else if(direccionDial==false){
-                this.emisora=this.emisora-0.2;
+                this.emisoraFM=this.emisoraFM-0.2;
             }
-            if(this.emisora<87.9){
-                this.emisora=107.9;
+            if(this.emisoraFM<87.9){
+                this.emisoraFM=107.9;
             }
-            else if(this.emisora>107.9){
-                this.emisora=87.9;
+            else if(this.emisoraFM>107.9){
+                this.emisoraFM=87.9;
             }
         }
         //Si esta en AM.   
         else if(this.banda==0){
             if(direccionDial==true){
-                this.emisora=this.emisora+10;
+                this.emisoraAM=this.emisoraAM+10;
             }else if(direccionDial==false){
-                this.emisora=this.emisora-10;
+                this.emisoraAM=this.emisoraAM-10;
             } 
-            if(this.emisora<530){
-                this.emisora=1610;
+            if(this.emisoraAM<530){
+                this.emisoraAM=1610;
             }
-            if(this.emisora>1610){
-                this.emisora=530;
+            if(this.emisoraAM>1610){
+                this.emisoraAM=530;
             }
         }
     }
@@ -80,23 +81,24 @@ public class Reemplazable implements Radio {
     //Emisora actual se guarda en el boton que se ingresa como parametro.
     public void guardar(int numBoton){
         if(this.banda==1){//FM
-            botonesFM[numBoton]=this.emisora;
+            botonesFM[numBoton]=this.emisoraFM;
         }
         else if(this.banda==0){//AM
-            botonesAM[numBoton]=(int) this.emisora; //Hacer cast de double a entero.
+            botonesAM[numBoton]=(int) this.emisoraAM; //Hacer cast de double a entero.
         }
     }
     //Pone la emisora que esta guardada en ese boton.
     public double getEmisora(){
-        return emisora;
+        if (banda==1){ return emisoraFM; }
+        else{ return emisoraAM; }
     }
     
     public void memoria(int numBoton){ 
        if(this.banda==1){//FM
-            this.emisora=botonesFM[numBoton];
+            this.emisoraFM=botonesFM[numBoton];
         }
         else if(this.banda==0){//AM
-            this.emisora= (int) botonesAM[numBoton]; //Hacer cast de double a entero.
+            this.emisoraAM= (int) botonesAM[numBoton]; //Hacer cast de double a entero.
         }
             
         
