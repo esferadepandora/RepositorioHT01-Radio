@@ -31,7 +31,7 @@ public class Reemplazable implements Radio {
     
     //METODOS ABSTRACTOS HEREDADOS
     //True=on, false=off.
-    public void setEstado(boolean estado){
+    public void setESTADO(boolean estado){
         this.estado=estado;
     }
     public boolean getEstado(){
@@ -47,7 +47,7 @@ public class Reemplazable implements Radio {
     }
     
     //True=dial sube,false=dial baja.
-    public void sintonizar(boolean direccionDial){
+    public void Sintonizar(boolean direccionDial){
         //Si esta en FM.
         if(this.banda==1){ 
             if(direccionDial==true){
@@ -79,7 +79,7 @@ public class Reemplazable implements Radio {
     }
     
     //Emisora actual se guarda en el boton que se ingresa como parametro.
-    public void guardar(int numBoton){
+    public void Guardar(int numBoton){
         if(this.banda==1){//FM
             botonesFM[numBoton]=this.emisoraFM;
         }
@@ -93,7 +93,7 @@ public class Reemplazable implements Radio {
         else{ return emisoraAM; }
     }
     
-    public void memoria(int numBoton){ 
+    public void Memoria(int numBoton){ 
        if(this.banda==1){//FM
             this.emisoraFM=botonesFM[numBoton];
         }
