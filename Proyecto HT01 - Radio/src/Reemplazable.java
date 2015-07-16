@@ -19,13 +19,15 @@
 
 public class Reemplazable implements Radio {
     
-    //ARIBUTOS
-    private boolean estado;
+    //ATRIBUTOS
+    private boolean estado;//indica si esta apagado o encendido
+    //iniciamos las emisoras de am y fm
     private int emisoraAM=530;
     private double emisoraFM=87.9;
-    private int banda;
-    private boolean direccionDial;
-    private int numBoton;
+    private int banda;//indica si esta en fm o am
+    private boolean direccionDial;//indica si el dial sube o baja
+    private int numBoton;//guarda el boton en donde el usuario guarda o sintoniza la emisora de los 12 botones
+    //creamos listas para guardas las emisoras de am y fm
     private int[] botonesAM = new int[13];
     private double[] botonesFM = new double[13];
     
@@ -55,6 +57,7 @@ public class Reemplazable implements Radio {
             }else if(direccionDial==false){
                 this.emisoraFM=this.emisoraFM-0.2;
             }
+            //si el dial llega al tope ya sea a la derecha o izquierda se reinicia
             if(this.emisoraFM<87.9){
                 this.emisoraFM=107.9;
             }
@@ -69,6 +72,7 @@ public class Reemplazable implements Radio {
             }else if(direccionDial==false){
                 this.emisoraAM=this.emisoraAM-10;
             } 
+            //si el dial llega al tope ya sea a la derecha o izquierda se reinicia
             if(this.emisoraAM<530){
                 this.emisoraAM=1610;
             }
