@@ -34,7 +34,7 @@ public class Principal {
 	boolean direccionDial;
         double emisora=87.9; //Inicia en FM 87.9 al encender.
 	int numBoton;
-        Radio radio1= new Driver2(); //Solo esta linea hay que modificar.
+        Radio radio1= new Reemplazable(); //Solo esta linea hay que modificar.
         Scanner leer = new Scanner(System.in); //Es un escaner de texto.
         DecimalFormat formateador = new DecimalFormat("###.#");
         String opcion;
