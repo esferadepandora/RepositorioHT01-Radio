@@ -18,7 +18,7 @@
 public interface Radio{
     
     //True=on, false=off.
-    public void setEstado(boolean estado);
+    public void setESTADO(boolean estado);
     public boolean getEstado();
     
     //1=FM, 0=AM.
@@ -26,14 +26,14 @@ public interface Radio{
     public void setAMFM(int banda);
     
     //True=dial sube,false=dial baja.
-    public void sintonizar(boolean direccionDial);
+    public void Sintonizar(boolean direccionDial);
     
     //Emisora actual se guarda en el boton que se ingresa como parametro.
-    public void guardar(int numBoton);
+    public void Guardar(int numBoton);
     
     //Devuelve la emisora actual. Este metodo realmente no deberia de existir, pero bueno...
     public double getEmisora();
     
     //Devuelve la emisora que esta en el boton del parametro.
-    public void memoria(int numBoton);
+    public void Memoria(int numBoton);
 }
