@@ -20,27 +20,28 @@
 
 //Se importa la clase scanner para recoger los ingresos del usuario.
 import java.util.Scanner;
-import java.text.DecimalFormat;
+import java.text.DecimalFormat; //se importa la clase decimalformat para darle formato a los numeros
 public class Principal {
-    //No hay atributos.
-    
+
     //Unico metodo es el main.
     public static void main (String[]args){
         
         //Variables
         int a = 0; //Para que el programa principal corra o termine.
-        boolean estado;
-	int banda;
-	boolean direccionDial;
-        double emisora=87.9; //Inicia en FM 87.9 al encender.
-	int numBoton;
-        Radio radio1= new Reemplazable(); //Solo esta linea hay que modificar.
-        Scanner leer = new Scanner(System.in); //Es un escaner de texto.
-        DecimalFormat formateador = new DecimalFormat("###.#");
-        String opcion;
+        boolean estado;//indica si esta encendido o apagado el radio
+	int banda;//indica si esta en AM o FM
+	boolean direccionDial;//indica si el dial sube o baja
+	int numBoton;//almacena el boton que ingresa el usuario para guardar o sintonizar una emisora de los botones
+//------------------------------------------------------------------------------------
+        //linea a modificar para los demas programas
+        Radio radio1= new Reemplazable();
+//------------------------------------------------------------------------------------
+        Scanner leer = new Scanner(System.in); //instanciamos un objeto de escaner para poder recibir datos
+        DecimalFormat formateador = new DecimalFormat("###.#");//instanciamos un formato para redondear las emisoras FM
+        String opcion;//guarda el numero de opcion seleccionado
         
-        //Iniciar el radio como apagado y en FM (FM=1, AM=0).
-        radio1.setESTADO(false);
+        //Iniciar el radio como encendido y en FM (FM=1, AM=0).
+        radio1.setESTADO(true);
         radio1.setAMFM(1);
         radio1.Sintonizar(true);
         
@@ -51,12 +52,13 @@ public class Principal {
 	
         //Mientras el programa este encendido.
         while (a == 0){
+            //tomamos el estado y la frecuencia actuales del radio
             estado = radio1.getEstado();
             banda = radio1.getAMFM();
             
             if (estado==true && banda==1){
                 System.out.println("\nRADIO ENCENDIDO\nFrecuencia: FM");
-                System.out.println("Emisora: "+formateador.format(radio1.getEmisora()));
+                System.out.println("Emisora: "+formateador.format(radio1.getEmisora()));//imprimimos la emisora
             }
             else if (estado==true && banda==0){
                 System.out.println("\nRADIO ENCENDIDO\nFrecuencia: AM");
@@ -77,6 +79,7 @@ public class Principal {
         		estado = true; //Encender radio.
         		radio1.setESTADO(estado);
             }
+            //cambia de am a fm o viceversa
             else if (opcion.equals("2") && estado==true){
 		if (banda==1){
                     banda=0;
@@ -95,8 +98,10 @@ public class Principal {
             else if (opcion.equals("5") && estado==true){ //Guarda el boton.
                 System.out.println("\n\nNumero de boton:");
                 numBoton=leer.nextInt();
+                //comprobamos que sea correcto el numero ingresado
                 if(numBoton<13 && numBoton>0){
                     if(banda==1){//FM
+                        //guardamos la emisora en el boton ingresado
                         radio1.Guardar(numBoton);
                         System.out.println("\nEmisora "+formateador.format(radio1.getEmisora())+" FM guardada en el boton "+numBoton+".");
                     }
@@ -112,9 +117,11 @@ public class Principal {
             }
             else if (opcion.equals("6") && estado==true){ //Regresa emisora en boton.
                 System.out.println("\n\nNumero de boton:");
-                numBoton=leer.nextInt();
+                numBoton=leer.nextInt();//pide el numero del boton
+                //verifica que el dato ingresado sea correcto
                 if(numBoton<13 && numBoton>0){
                     if(banda==1){//FM
+                        //tomamos la emisora guardada en el boton ingresado
                         radio1.Memoria(numBoton);
                         System.out.println("\nLa emisora guardada en el boton "+numBoton+" es "+formateador.format(radio1.getEmisora())+" FM.");
                     }
@@ -129,7 +136,7 @@ public class Principal {
                 leer.nextLine(); //permite vaciar el buffer para que pueda leer correctamente los datos
             }
             else if (opcion.equals("7")){
-                radio1.setESTADO(false); //La apaga este encendida o apagada.   
+                radio1.setESTADO(false); //Si el radio esta encendido lo apaga   
             }
             else if (opcion.equals("8")){
 		System.out.println("Gracias por utilizar nuestro programa de radio, que tenga buen dia.");
