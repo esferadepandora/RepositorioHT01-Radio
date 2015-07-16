@@ -15,25 +15,70 @@
 //que haya sido el diseno mas eficiente.
 //#########################################################################
 
+/**
+ *
+ * @author cristiandlcastillo
+ */
+
 public interface Radio{
     
     //True=on, false=off.
-    public void setESTADO(boolean estado);
+
+    /**
+     *
+     * @param estado
+     */
+        public void setESTADO(boolean estado);
+
+    /**
+     *
+     * @return
+     */
     public boolean getEstado();
     
     //1=FM, 0=AM.
-    public int getAMFM();
+
+    /**
+     *
+     * @return
+     */
+        public int getAMFM();
+
+    /**
+     *
+     * @param banda
+     */
     public void setAMFM(int banda);
     
     //True=dial sube,false=dial baja.
-    public void Sintonizar(boolean direccionDial);
+
+    /**
+     *
+     * @param direccionDial
+     */
+        public void Sintonizar(boolean direccionDial);
     
     //Emisora actual se guarda en el boton que se ingresa como parametro.
-    public void Guardar(int numBoton);
+
+    /**
+     *
+     * @param numBoton
+     */
+        public void Guardar(int numBoton);
     
     //Devuelve la emisora actual. Este metodo realmente no deberia de existir, pero bueno...
-    public double getEmisora();
+
+    /**
+     *
+     * @return
+     */
+        public double getEmisora();
     
     //Devuelve la emisora que esta en el boton del parametro.
-    public void Memoria(int numBoton);
+
+    /**
+     *
+     * @param numBoton
+     */
+        public void Memoria(int numBoton);
 }

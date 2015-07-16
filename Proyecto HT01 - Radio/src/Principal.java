@@ -21,10 +21,20 @@
 //Se importa la clase scanner para recoger los ingresos del usuario.
 import java.util.Scanner;
 import java.text.DecimalFormat; //se importa la clase decimalformat para darle formato a los numeros
+
+/**
+ *
+ * @author cristiandlcastillo
+ */
 public class Principal {
 
     //Unico metodo es el main.
-    public static void main (String[]args){
+
+    /**
+     *
+     * @param args
+     */
+        public static void main (String[]args){
         
         //Variables
         int a = 0; //Para que el programa principal corra o termine.
