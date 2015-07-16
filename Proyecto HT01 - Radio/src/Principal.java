@@ -34,15 +34,15 @@ public class Principal {
 	boolean direccionDial;
         double emisora=87.9; //Inicia en FM 87.9 al encender.
 	int numBoton;
-        Radio radio1= new Reemplazable(); //Solo esta linea hay que modificar.
+        Radio radio1= new Driver2(); //Solo esta linea hay que modificar.
         Scanner leer = new Scanner(System.in); //Es un escaner de texto.
         DecimalFormat formateador = new DecimalFormat("###.#");
         String opcion;
         
         //Iniciar el radio como apagado y en FM (FM=1, AM=0).
-        radio1.setEstado(false);
+        radio1.setESTADO(false);
         radio1.setAMFM(1);
-        radio1.sintonizar(true);
+        radio1.Sintonizar(true);
         
         
         //Esta instruccion solo se muestra al iniciar el programa.
@@ -74,8 +74,8 @@ public class Principal {
 
 		
             if (opcion.equals("1")){
-		estado = true; //Encender radio.
-		radio1.setEstado(estado);
+        		estado = true; //Encender radio.
+        		radio1.setESTADO(estado);
             }
             else if (opcion.equals("2") && estado==true){
 		if (banda==1){
@@ -87,21 +87,21 @@ public class Principal {
                 radio1.setAMFM(banda);
             }
             else if (opcion.equals("3") && estado==true){ //Sube dial.
-		radio1.sintonizar(true);
+		          radio1.Sintonizar(true);
             }
             else if (opcion.equals("4") && estado==true){ //Baja dial.
-		radio1.sintonizar(false);
+		          radio1.Sintonizar(false);
             }
             else if (opcion.equals("5") && estado==true){ //Guarda el boton.
                 System.out.println("\n\nNumero de boton:");
                 numBoton=leer.nextInt();
                 if(numBoton<13 && numBoton>0){
                     if(banda==1){//FM
-                        radio1.guardar(numBoton);
+                        radio1.Guardar(numBoton);
                         System.out.println("\nEmisora "+formateador.format(radio1.getEmisora())+" FM guardada en el boton "+numBoton+".");
                     }
                     else if(banda==0){//AM
-                        radio1.guardar(numBoton);
+                        radio1.Guardar(numBoton);
                         System.out.println("\nEmisora "+radio1.getEmisora()+" AM guardada en el boton "+numBoton+".");
                     }
                 }
@@ -115,11 +115,11 @@ public class Principal {
                 numBoton=leer.nextInt();
                 if(numBoton<13 && numBoton>0){
                     if(banda==1){//FM
-                        radio1.memoria(numBoton);
+                        radio1.Memoria(numBoton);
                         System.out.println("\nLa emisora guardada en el boton "+numBoton+" es "+formateador.format(radio1.getEmisora())+" FM.");
                     }
                     else if(banda==0){//AM
-                        radio1.memoria(numBoton);
+                        radio1.Memoria(numBoton);
                         System.out.println("\nLa emisora guardada en el boton "+numBoton+" es "+radio1.getEmisora()+" AM.");
                     }
                 }
@@ -129,7 +129,7 @@ public class Principal {
                 leer.nextLine(); //permite vaciar el buffer para que pueda leer correctamente los datos
             }
             else if (opcion.equals("7")){
-                radio1.setEstado(false); //La apaga este encendida o apagada.   
+                radio1.setESTADO(false); //La apaga este encendida o apagada.   
             }
             else if (opcion.equals("8")){
 		System.out.println("Gracias por utilizar nuestro programa de radio, que tenga buen dia.");
