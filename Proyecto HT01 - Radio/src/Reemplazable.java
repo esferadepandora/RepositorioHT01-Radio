@@ -25,7 +25,7 @@
 public class Reemplazable implements Radio {
     
     //ATRIBUTOS
-    private boolean estado;//indica si esta apagado o encendido
+    private boolean estado=true;//indica si esta apagado o encendido
     //iniciamos las emisoras de am y fm
     private int emisoraAM=530;
     private double emisoraFM=87.9;
